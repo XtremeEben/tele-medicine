@@ -8,7 +8,7 @@ Its purpose is to provide clinical support.
 Credits :
 --------- 
 
-=> Design & developed: "ProVintage" : https:github.com/ebenXtreme 
+=> Design & developed: "ProVintage" : https://github.com/ebenXtreme 
 => Bootstrap : http://getbootstrap.com/
 => Fontawesome : https://fortawesome.github.io/Font-Awesome/
 => Fonts : https://www.google.com/fonts
