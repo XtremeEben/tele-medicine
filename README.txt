@@ -1,4 +1,4 @@
-## Aims:
+##Aims:
 Its purpose is to provide clinical support.
  It is intended to overcome geographical barriers, connecting users who are not in the 
  same physical location with the doctor. It involves the use of various types of ICT.
