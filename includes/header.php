@@ -14,6 +14,7 @@
 	<link href="css/flexslider.css" rel="stylesheet" />
 	<link href="js/owl-carousel/owl.carousel.css" rel="stylesheet">
 	<link href="css/style.css" rel="stylesheet" />
+	<!-- <link href="css/app.css" rel="stylesheet" /> -->
 	<link rel="stylesheet" href="css/login-register.css">
 
 	<!-- HTML5 shim, for IE6-8 support of HTML5 elements -->

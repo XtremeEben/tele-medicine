@@ -35,6 +35,8 @@ if (isset($_GET['p'])) {
         include 'includes/services.php';
     } elseif ($page == 'see-a-doctor') {
         include 'includes/see-a-doctor.php';
+    } elseif ($page == 'video-call') {
+        header('Location: video/');
     }
 } else {
     header("Location:?p");

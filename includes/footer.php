@@ -1,3 +1,66 @@
+<!-- to video call or chat -->
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenterr" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+ aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLongTitle">Unavailablr</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<div class="container-fluid">
+
+					<div class="card col-lg-10">
+							<div class="container-fluid">
+								<h4><b>Sorry!</b></h4>
+								<p>This doctor is offline. Check with another doctor or try again later ;)</p>
+							</div>
+						</div>
+				</div>
+			</div>
+		</div>
+		<div class="modal-footer">
+		</div>
+	</div>
+</div>
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+ aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLongTitle">See a Doctor</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<div class="container-fluid">
+
+					<div class="card col-lg-5"><a href="?p=video-call">
+							<div class="container-fluid">
+								<h4><b>Video Call</b></h4>
+								<p>Choose to have a video call only</p>
+							</div>
+						</a></div>
+					<div class="col-lg-2"></div>
+					<div class="card col-lg-5"><a href="#">
+							<div class="container-fluid">
+								<h4><b>Chat</b></h4>
+								<p>Choose to live chat and you can still have a video call</p>
+						</a></div>
+				</div>
+			</div>
+		</div>
+		<div class="modal-footer">
+		</div>
+	</div>
+</div>
+</div>
+
+<!-- login modal -->
 <div class="modal fade login" id="loginModal">
 	<div class="modal-dialog login animated">
 		<div class="modal-content">
@@ -19,20 +82,6 @@
 								<input id="email" class="form-control" type="text" placeholder="Email" name="email">
 								<input id="password" class="form-control" type="password" placeholder="Password" name="password">
 								<input class="btn btn-default btn-login" type="button" value="Login" onclick="loginAjax()">
-							</form>
-						</div>
-					</div>
-				</div>
-				<div class="box">
-					<div class="content registerBox" style="display:none;">
-						<div class="form">
-							<form method="post" html="{:multipart=>true}" data-remote="true" action="/register" accept-charset="UTF-8">
-								<input id="fname" class="form-control" type="text" placeholder="First name" name="fname">
-								<input id="lname" class="form-control" type="text" placeholder="Last name" name="lname">
-								<input id="email" class="form-control" type="text" placeholder="Email" name="email">
-								<input id="password" class="form-control" type="password" placeholder="Password" name="password">
-								<input id="password_confirmation" class="form-control" type="password" placeholder="Repeat Password" name="password_confirmation">
-								<input class="btn btn-default btn-register" type="submit" value="Create account" name="commit">
 							</form>
 						</div>
 					</div>
@@ -199,6 +248,8 @@
 <script src="js/custom.js"></script>
 <script src="js/owl-carousel/owl.carousel.js"></script>
 <script src="js/login-register.js"></script>
+<!-- <script src="https://static.opentok.com/v2/js/opentok.min.js"></script> -->
+<!-- <script type="text/javascript" src="js/app.js"></script> -->
 
 <Script>
 	$(document).ready(function () {
@@ -225,7 +276,7 @@
 						items.push("<td id='" + indexInArray + "'>" + valueOfElement.fname + " " + valueOfElement.lname + "</td>");
 						items.push("<td id='" + indexInArray + "'>" + valueOfElement.specialty + "</td>");
 						items.push("<td id='" + indexInArray + "'>" + valueOfElement.last_seen + "</td>");
-						items.push("<td id='" + indexInArray + "'>" + valueOfElement.status + "</td>");
+						items.push("<td class='onlineSt' id='" + indexInArray + "'>" + valueOfElement.status + "</td>");
 						items.push("</tr>");
 					});
 					$("<tbody/>", { html: items.join("") }).appendTo('table');
@@ -239,6 +290,28 @@
 		function update_time() {
 			$.get("service/update_user.php");
 		}
+		$('.modal').on('hide.bs.modal', function () {
+			$("#doc tr").removeClass("danger");
+		});
+		$("#doc tr").on("hover", function () {
+			$(this).css('cursor', 'pointer');
+
+		});
+		$("#doc tr").on('click', function (e) {
+			$(this).data('isSelected', true);
+			$(this).siblings().data('isSelected', false);
+			var st = $('table').find(this).find('.onlineSt').html();
+			if(st == 'Online'){
+			$(this).addClass('danger');
+			$("#exampleModalCenter").modal("show");
+
+			} else {
+			$(this).addClass('danger');
+			$("#exampleModalCenterr").modal("show");
+			}
+
+
+		});
 	});
 </Script>
 
