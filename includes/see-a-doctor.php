@@ -11,20 +11,7 @@
                         <th>Status</th>
                     </thead>
                     <tbody id="doc">
-                        <tr>
-                            <td>1</td>
-                            <td>Eben</td>
-                            <td>Dentist</td>
-                            <td>two minutes ago</td>
-                            <td class="onlineSt">Online</td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>Diamond</td>
-                            <td>Surgery</td>
-                            <td>ten minutes ago</td>
-                            <td class="onlineSt">Offline</td>
-                        </tr>
+                        
                     </tbody>
                 </table>
                 <div class="card" id="log"></div>
