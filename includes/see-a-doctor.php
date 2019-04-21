@@ -2,7 +2,7 @@
     <div class="container content">
         <div class="row">
             <div class="col-lg-12">
-                <table class="table table-hover table-striped ">
+                <table id="doc" class="table table-hover table-striped ">
                     <thead class="thead-dark">
                         <th>#</th>
                         <th>Doctor Name</th>
@@ -10,11 +10,11 @@
                         <th>Last Seen</th>
                         <th>Status</th>
                     </thead>
-                    <tbody id="doc">
-                        
-                    </tbody>
+                    
                 </table>
                 <div class="card" id="log"></div>
+            <a id="seedoc" href="#" class="btn btn-lg btn-group-lg">See a Doctor</a>
+
             </div>
         </div>
     </div>

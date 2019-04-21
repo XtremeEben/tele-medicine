@@ -36,7 +36,6 @@
     <div class="container">
 
         <div class="row text-center">
-            <a href="#" class="btn btn-lg btn-group-lg">See a Doctor</a>
         </div>
     </div>
     <div class="container">

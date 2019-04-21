@@ -75,24 +75,34 @@
 							<li>
 								<a href="?p=pricing">Pricing</a>
 							</li>
+                            <?php if ($isadmin == true) { ?>
 							<li>
-								<a href="?p=see-a-doctor">See a Doctor</a>
-							</li>
+								<a href="?p=see-patients">Your patients</a>
+                            </li>
+                            <?php } else { ?>
+                                <li>
+                                    <a href="?p=see-a-doctor">See a Doctor</a>
+                                </li>
+                            <?php } ?>
+
+
 							<li>
 								<a href="?p=contact">Contact</a>
 							</li>
-<?php 
-if($loggedin == true){
-	?>
-	<li>
-		<a href="service/logout.php" class="btn-info">Logout  </a>
-	</li>
-<?php } else{ 
-	 ?>
+							<?php 
+						if ($loggedin == true) {
+							?>
+							<li>
+								<a href="service/logout.php" class="btn-info">Logout </a>
+							</li>
+							<?php 
+					} else {
+						?>
 							<li>
 								<a class="btn-info" data-toggle="modal" href="javascript:void(0)" onclick="openLoginModal();">Login/Register</a>
 							</li>
-<?php } ?>
+							<?php 
+					} ?>
 
 
 						</ul>

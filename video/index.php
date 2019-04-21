@@ -7,11 +7,7 @@ $loggedin = false;
 if($app->isLoggedIn()) {
     // print_r("I am loooooooged"); exit;
     $loggedin = true;
-} 
-// else {
-    // print_r("I am not loggggggggggggg"); print_r($app->isLoggedIn()); exit;
-// }
-
+}
 
 ?>
 
@@ -38,7 +34,7 @@ if($app->isLoggedIn()) {
 	<!--[if lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
-
+    <script>getid()</script>
 </head>
 
 
@@ -61,3 +57,72 @@ if($app->isLoggedIn()) {
 <script src="../js/login-register.js"></script>
   <script src="https://static.opentok.com/v2/js/opentok.min.js"></script>
   <script type="text/javascript" src="../js/app.js"></script>
+
+<script>
+    function getid() {
+        $part_id = localStorage.getItem('doc_id');
+        return $part_id;
+    }
+    $(document).ready(function () {
+
+        let $doc = localStorage.getItem('doc_id');
+        let $pat = localStorage.getItem('pat_id');
+
+        $.ajax({
+            url: 'createsession.php',
+            type: 'POST',
+            data: {doc_id: $doc, pat_id: $pat}
+        })
+            .done(function (data) {
+
+            data = JSON.parse(data);
+
+// replace these values with those generated in your TokBox Account
+            var apiKey = data.apiKey;
+            var sessionId = data.sessionId;
+            var token = data.token;
+
+// (optional) add server code here
+            initializeSession();
+
+// Handling all of our errors here by alerting them
+            function handleError(error) {
+                if (error) {
+                    alert(error.message);
+                }
+            }
+
+            function initializeSession() {
+                var session = OT.initSession(apiKey, sessionId);
+
+                // Subscribe to a newly created stream
+                session.on('streamCreated', function (event) {
+                    session.subscribe(event.stream, 'subscriber', {
+                        insertMode: 'append',
+                        width: '100%',
+                        height: '100%'
+                    }, handleError);
+                });
+
+                // Create a publisher
+                var publisher = OT.initPublisher('publisher', {
+                    insertMode: 'append',
+                    width: '100%',
+                    height: '100%'
+                }, handleError);
+
+                // Connect to the session
+                session.connect(token, function (error) {
+                    // If the connection is successful, publish to the session
+                    if (error) {
+                        handleError(error);
+                    } else {
+                        session.publish(publisher, handleError);
+                    }
+                });
+            }
+        });
+
+
+    });
+</script>

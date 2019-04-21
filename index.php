@@ -3,14 +3,15 @@ require 'class/class.SYS.php';
 $app = new Sys();
 
 $loggedin = false;
+$isadmin = false;
 
 if($app->isLoggedIn()) {
-    // print_r("I am loooooooged"); exit;
     $loggedin = true;
-} 
-// else {
-    // print_r("I am not loggggggggggggg"); print_r($app->isLoggedIn()); exit;
-// }
+//    print_r($app->isAdmin()); exit;
+    if($app->isAdmin()){
+        $isadmin = true;
+    }
+}
 
 include 'includes/header.php';
 
@@ -35,6 +36,8 @@ if (isset($_GET['p'])) {
         include 'includes/services.php';
     } elseif ($page == 'see-a-doctor') {
         include 'includes/see-a-doctor.php';
+    } elseif ($page == 'see-patients') {
+        include 'includes/see-patients.php';
     } elseif ($page == 'video-call') {
         header('Location: video/');
     }
@@ -43,7 +46,7 @@ if (isset($_GET['p'])) {
 }
 
 
-
+include 'talk.html';
 
 include 'includes/footer.php';
 
